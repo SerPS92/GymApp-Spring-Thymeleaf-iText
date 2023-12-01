@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<title>SB Admin 2 - Dashboard</title>
+	
+	<!-- Custom fonts for this template-->
+	<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i}"
+	      rel="stylesheet">
+	<!-- Custom styles for this template-->
+	<link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+	
+	<!--Sidebar-->
+	<div th:insert="~{templates/admin_template.html::sidebar}"></div>
+	
+	<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content">
+			<div th:insert="~{templates/admin_template.html::topbar}"></div>
+			
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
+				
+				<!-- Content Row -->
+				<div class="row">
+					
+					<h2>Create product</h2>
+					<form class="form-horizontal" th:action="@{/exercise/save}" method="post"
+					      enctype="multipart/form-data">
+						<br></br>
+						<input type="hidden" th:value="${exercise.id}" name="id" id="id">
+						<div class="col-md-8">
+							<label class="control-label col-sm-2" for="name">Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="name" name="name"
+								       th:value="${exercise.name}" autocomplete="off" required>
+							</div>
+						</div>
+						<br>
+						
+						<div class="col-md-8">
+							<label class="control-label col-sm-2" for="type">Type:</label>
+							<div class="col-sm-10">
+								<select class="form-control" id="type" name="type" required>
+									<option value="" disabled selected>Select type</option>
+									<option th:selected="${selectedType == 'pecho'}" value="pecho">Pecho</option>
+									<option th:selected="${selectedType == 'espalda'}" value="espalda">Espalda</option>
+									<option th:selected="${selectedType == 'biceps'}" value="biceps">Bíceps</option>
+									<option th:selected="${selectedType == 'triceps'}" value="triceps">Tríceps</option>
+									<option th:selected="${selectedType == 'hombro'}" value="hombro">Hombro</option>
+									<option th:selected="${selectedType == 'core'}" value="core">Core</option>
+									<option th:selected="${selectedType == 'cardio'}" value="cardio">Cardio</option>
+									<option th:selected="${selectedType == 'hiit'}" value="hiit">Hiit</option>
+								</select>
+							</div>
+						</div>
+						
+						<br>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="img">Images: </label>
+							<div class="col-sm-12">
+								<input type="file" class="form-control-file" id="img" name="img">
+							</div>
+						</div>
+						
+						
+						<br>
+						<div class="col-sm-2">
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</form>
+				
+				</div>
+			
+			</div>
+			
+			<!--Footer-->
+			<div th:insert="~{templates/admin_template.html::footer}"></div>
+		
+		</div>
+	</div>
+
+
+</div>
+
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+<!-- Page level plugins -->
+<script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/js/demo/chart-area-demo.js}"></script>
+<script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+
+</body>
+</html>
