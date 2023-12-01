@@ -49,10 +49,10 @@
 					<br>
 					<div class="row">
 						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'pecho'})}" style="margin-right: 20px;">Pecho
+						   th:href="@{/exercise/show/{type} (type = ${'chest'})}" style="margin-right: 20px;">Chest
 						</a>
 						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'espalda'})}" style="margin-right: 20px;">Espalda
+						   th:href="@{/exercise/show/{type} (type = ${'back'})}" style="margin-right: 20px;">Back
 						</a>
 						<a type="button" class="btn btn-primary"
 						   th:href="@{/exercise/show/{type} (type = ${'biceps'})}" style="margin-right: 20px;">Bíceps
@@ -61,7 +61,8 @@
 						   th:href="@{/exercise/show/{type} (type = ${'triceps'})}" style="margin-right: 20px;">Tríceps
 						</a>
 						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'hombro'})}" style="margin-right: 20px;">Hombro
+						   th:href="@{/exercise/show/{type} (type = ${'shoulder'})}"
+						   style="margin-right: 20px;">Shoulder
 						</a>
 						<a type="button" class="btn btn-primary"
 						   th:href="@{/exercise/show/{type} (type = ${'core'})}" style="margin-right: 20px;">Core
@@ -92,14 +93,17 @@
 										<div class="btn-group">
 											<button type="button" class="btn btn-white"
 											        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												Acciones
+												Menu
 											</button>
 											<div class="dropdown-menu">
 												<a class="dropdown-item"
-												   th:href="@{/exercise/edit/{id} (id = ${exercise.id})}">Editar</a>
+												   th:href="@{/exercise/add/{id} (id = ${exercise.id})}">Add to
+													program</a>
 												<a class="dropdown-item"
-												   th:href="@{/exercise/delete/{id} (id=${exercise.id})}">Eliminar
-													ejercicio</a>
+												   th:href="@{/exercise/edit/{id} (id = ${exercise.id})}">Edit</a>
+												<a class="dropdown-item"
+												   th:href="@{/exercise/delete/{id} (id=${exercise.id})}">Delete
+													exercise</a>
 											</div>
 										</div>
 									</div>

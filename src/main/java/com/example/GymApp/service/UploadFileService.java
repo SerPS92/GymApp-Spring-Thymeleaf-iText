@@ -12,8 +12,9 @@ import java.nio.file.Paths;
 @Service
 public class UploadFileService {
 
-    private final String folder = "src/main/resources/static/images//";
-    private String fileName = "default.jpg";
+    private static final String folder = "src/main/resources/static/images//";
+    private static final String defaultImage = "default.jpg";
+    private static String fileName = defaultImage;
     public String saveImage(MultipartFile file) throws IOException{
         if(!file.isEmpty()){
             byte[] bytes = file.getBytes();

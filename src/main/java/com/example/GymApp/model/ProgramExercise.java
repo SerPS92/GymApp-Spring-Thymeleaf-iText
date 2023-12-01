@@ -16,9 +16,9 @@ public class ProgramExercise {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    private int repetitions;
-    private int rest;
-    private int weight;
+    private String repetitions;
+    private String rest;
+    private String weight;
     private String image;
     private String day;
     private String notes;
