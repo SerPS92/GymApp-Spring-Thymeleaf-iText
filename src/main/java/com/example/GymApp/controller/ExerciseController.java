@@ -15,17 +15,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/exercise")
 public class ExerciseController {
 
+    List<ProgramExercise> programExercises = new ArrayList<>();
     private final Logger log = LoggerFactory.getLogger(ExerciseController.class);
     private final IExerciseService exerciseService;
     private final UploadFileService uploadFileService;
-
-    List<ProgramExercise> programExercises = new ArrayList<>();
 
     public ExerciseController(IExerciseService exerciseService,
                               UploadFileService uploadFileService) {
@@ -113,7 +113,7 @@ public class ExerciseController {
         } else {
             if (!e.getImage().equals("default.jpg")) {
                 uploadFileService.deleteImage(e.getImage());
-            } else{
+            } else {
                 String nameImage = uploadFileService.saveImage(file);
                 exercise.setImage(nameImage);
             }
@@ -125,21 +125,23 @@ public class ExerciseController {
     @PostMapping("/addExercise")
     public String addExercise(@RequestParam(name = "exercise_id") Integer exercise_id,
                               @RequestParam(name = "repetitions") String repetitions,
+                              @RequestParam(name = "series")String series,
                               @RequestParam(name = "rest") String rest,
                               @RequestParam(name = "weight") String weight,
-                              @RequestParam(name = "day")String day,
-                              @RequestParam(name = "notes")String notes,
-                              Model model) {
+                              @RequestParam(name = "day") String day,
+                              @RequestParam(name = "notes") String notes) {
 
         ProgramExercise programExercise = new ProgramExercise();
         Exercise exercise = new Exercise();
 
-        exercise = exerciseService.findById(exercise_id).get();
+        Optional<Exercise> optionalExercise = exerciseService.findById(exercise_id);
+        exercise = optionalExercise.get();
 
         programExercise.setName(exercise.getName());
         programExercise.setExercise(exercise);
         programExercise.setImage(exercise.getImage());
         programExercise.setRepetitions(repetitions);
+        programExercise.setSeries(series);
         programExercise.setRest(rest);
         programExercise.setWeight(weight);
         programExercise.setDay(day);
@@ -147,15 +149,34 @@ public class ExerciseController {
 
         programExercises.add(programExercise);
 
-        Map<String, List<ProgramExercise>> exercisesByDay = programExercises.stream()
-                .collect(Collectors.groupingBy(ProgramExercise::getDay));
+        return "exercise/exercises";
+    }
 
-        List<ProgramExercise> exercisesForMonday = exercisesByDay.get("monday");
-        List<ProgramExercise> exercisesForTuesday = exercisesByDay.get("tuesday");
-        List<ProgramExercise> exercisesForWednesday = exercisesByDay.get("wednesday");
-        List<ProgramExercise> exercisesForThursday = exercisesByDay.get("thursday");
-        List<ProgramExercise> exercisesForFriday = exercisesByDay.get("friday");
-        List<ProgramExercise> exercisesForSaturday = exercisesByDay.get("saturday");
+    @GetMapping("/provisional")
+    public String provisional(Model model) {
+
+        List<ProgramExercise> exercisesForMonday = new ArrayList<>();
+        List<ProgramExercise> exercisesForTuesday = new ArrayList<>();
+        List<ProgramExercise> exercisesForWednesday = new ArrayList<>();
+        List<ProgramExercise> exercisesForThursday = new ArrayList<>();
+        List<ProgramExercise> exercisesForFriday = new ArrayList<>();
+        List<ProgramExercise> exercisesForSaturday = new ArrayList<>();
+
+        for(ProgramExercise exercise: programExercises){
+            if(exercise.getDay().equals("monday")){
+                exercisesForMonday.add(exercise);
+            } else if(exercise.getDay().equals("tuesday")){
+                exercisesForTuesday.add(exercise);
+            } else if(exercise.getDay().equals("wednesday")){
+                exercisesForWednesday.add(exercise);
+            } else if(exercise.getDay().equals("thursday")){
+                exercisesForThursday.add(exercise);
+            } else if(exercise.getDay().equals("friday")){
+                exercisesForFriday.add(exercise);
+            } else if(exercise.getDay().equals("saturday")){
+                exercisesForSaturday.add(exercise);
+            }
+        }
 
         model.addAttribute("exercisesForMonday", exercisesForMonday);
         model.addAttribute("exercisesForTuesday", exercisesForTuesday);
@@ -163,6 +184,7 @@ public class ExerciseController {
         model.addAttribute("exercisesForThursday", exercisesForThursday);
         model.addAttribute("exercisesForFriday", exercisesForFriday);
         model.addAttribute("exercisesForSaturday", exercisesForSaturday);
-        return "redirect:/exercise/";
+
+        return "program/provisionalprogram";
     }
 }

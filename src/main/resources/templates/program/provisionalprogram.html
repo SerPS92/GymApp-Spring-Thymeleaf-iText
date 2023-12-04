@@ -37,51 +37,38 @@
 				
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
+					
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add</h1>
+						<h1 class="h3 mb-0 text-gray-800">Program</h1>
 					</div>
-				</div>
-				<br>
-				<div class="container-fluid pb-5">
-					<img class="w-50 h-50" th:src="@{/images/{img} (img = ${exercise.image})}" alt="Image">
-					<div class="bg-white p-4 mb-30 w-50 h-50">
-						<h3 th:text="${exercise.name}"></h3>
-						<form th:action="@{/exercise/addExercise}" method="post">
-							<input type="hidden" name="exercise_id" id="exercise_id" th:value="${exercise.id}">
-							<div class="form-group">
-								<label for="repetitions">Repetitions:</label>
-								<input type="text" class="form-control" id="repetitions" name="repetitions">
-							</div>
-							<div class="form-group">
-								<label for="series">Series:</label>
-								<input type="text" class="form-control" id="series" name="series">
-							</div>
-							<div class="form-group">
-								<label for="rest">Rest:</label>
-								<input type="text" class="form-control" id="rest" name="rest">
-							</div>
-							<div class="form-group">
-								<label for="weight">Weight:</label>
-								<input type="text" class="form-control" id="weight" name="weight">
-							</div>
-							<div class="form-group">
-								<label for="day">Day:</label>
-								<select class="form-control" id="day" name="day">
-									<option value="monday">Monday</option>
-									<option value="tuesday">Tuesday</option>
-									<option value="wednesday">Wednesday</option>
-									<option value="thursday">Thursday</option>
-									<option value="friday">Friday</option>
-									<option value="saturday">Saturday</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="notes">Notes:</label>
-								<textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
-							</div>
-							<button type="submit" class="btn btn-primary">Add</button>
-						</form>
+					
+					<!-- Content Row -->
+					<h3>Monday</h3>
+					<div th:each="exercise:${exercisesForMonday}">
+						<div class="row">
+							<table>
+								<tr>
+									<td th:text="${exercise.name}"></td>
+								</tr>
+								<tr>
+									<td rowspan="5"><img style="width: 175px; height:auto;"
+									                     th:src="@{/images/{img} (img = ${exercise.image})}"></td>
+								</tr>
+								<tr>
+									<td th:text="'Repetitions: '+ ${exercise.repetitions}"></td>
+								</tr>
+								<tr>
+									<td th:text="'Series: '+ ${exercise.series}"></td>
+								</tr>
+								<tr>
+									<td th:text="'Weight: '+ ${exercise.weight}"></td>
+								</tr>
+								<tr>
+									<td th:text="'Rest: '+ ${exercise.rest}"></td>
+								</tr>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
