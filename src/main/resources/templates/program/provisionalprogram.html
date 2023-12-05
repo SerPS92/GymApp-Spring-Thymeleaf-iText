@@ -20,7 +20,7 @@
 
 </head>
 
-<body id="page-top">
+<body>
 
 <div id="wrapper">
 	
@@ -28,56 +28,189 @@
 	<div th:insert="~{templates/admin_template.html::sidebar}"></div>
 	
 	
-	<div id="content-wrapper" class="d-flex flex-column">
-		<div id="content">
+	<div id="content-wrapper" style="background-color: #FFB6C1">
+		<div id="content" style="background-color: #FFB6C1; margin-left: 0vw;">
 			<!--TopBar-->
 			<div th:insert="~{templates/admin_template.html::topbar}"></div>
 			
-			<div class="container">
+			<div style="background-color: #ADD8E6; width: 80vw">
+				
+				<!-- Page Heading -->
+				<div class="d-sm-flex align-items-left justify-content-between mb-4">
+					<h1 class="h3 mb-0 text-gray-800">Program</h1>
+				</div>
 				
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
-					
-					<!-- Page Heading -->
-					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Program</h1>
-					</div>
+				<div class="container-fluid" style="background-color: #f2f2f2; width: 80vw; height: 100vh">
 					
 					<!-- Content Row -->
-					<h3>Monday</h3>
-					<div th:each="exercise:${exercisesForMonday}">
-						<div class="row">
-							<table>
-								<tr>
-									<td th:text="${exercise.name}"></td>
-								</tr>
-								<tr>
-									<td rowspan="5"><img style="width: 175px; height:auto;"
-									                     th:src="@{/images/{img} (img = ${exercise.image})}"></td>
-								</tr>
-								<tr>
-									<td th:text="'Repetitions: '+ ${exercise.repetitions}"></td>
-								</tr>
-								<tr>
-									<td th:text="'Series: '+ ${exercise.series}"></td>
-								</tr>
-								<tr>
-									<td th:text="'Weight: '+ ${exercise.weight}"></td>
-								</tr>
-								<tr>
-									<td th:text="'Rest: '+ ${exercise.rest}"></td>
-								</tr>
-							</table>
+					<div class="row" style="height: 50vh; width: 60vw">
+						<div class="col" style="width: 10vw; height:14vh">
+							<h3>Monday</h3>
+							<div th:each="exercise:${exercisesForMonday}">
+								<div class="row">
+									<table>
+										<tr>
+											<td th:text="${exercise.name}"></td>
+										</tr>
+										<tr>
+											<td rowspan="6">
+												<img style="width: 7vw; height:9vh;"
+												     th:src="@{/images/{img} (img = ${exercise.image})}">
+											</td>
+										</tr>
+										<tr>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Series: '+ ${exercise.series}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col" style="margin-left: 0vw">
+							<h3>Tuesday</h3>
+							<div th:each="exercise:${exercisesForTuesday}">
+								<div class="row">
+									<table>
+										<tr>
+											<td th:text="${exercise.name}"></td>
+										</tr>
+										<tr>
+											<td rowspan="6"><img style="width: 7vw; height:9vh;"
+											                     th:src="@{/images/{img} (img = ${exercise.image})}">
+											</td>
+										</tr>
+										<tr>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Series: '+ ${exercise.series}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col" style="margin-left: 0vw">
+							<h3>Wednesday</h3>
+							<div th:each="exercise:${exercisesForWednesday}">
+								<div class="row">
+									<table>
+										<tr>
+											<td th:text="${exercise.name}"></td>
+										</tr>
+										<tr>
+											<td rowspan="6"><img style="width: 7vw; height:9vh;"
+											                     th:src="@{/images/{img} (img = ${exercise.image})}">
+											</td>
+										</tr>
+										<tr>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Series: '+ ${exercise.series}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col" style="margin-left: 0vw">
+							<h3>Thursday</h3>
+							<div th:each="exercise:${exercisesForThursday}">
+								<div class="row">
+									<table>
+										<tr>
+											<td th:text="${exercise.name}"></td>
+										</tr>
+										<tr>
+											<td rowspan="6"><img style="width: 7vw; height:9vh;"
+											                     th:src="@{/images/{img} (img = ${exercise.image})}">
+											</td>
+										</tr>
+										<tr>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Series: '+ ${exercise.series}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col" style="margin-left: 0vw">
+							<h3>Friday</h3>
+							<div th:each="exercise:${exercisesForFriday}">
+								<div class="row">
+									<table>
+										<tr>
+											<td th:text="${exercise.name}"></td>
+										</tr>
+										<tr>
+											<td rowspan="6"><img style="width: 7vw; height:9vh;"
+											                     th:src="@{/images/{img} (img = ${exercise.image})}">
+											</td>
+										</tr>
+										<tr>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Series: '+ ${exercise.series}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+										</tr>
+										<tr>
+											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			<!--Footer-->
-			<div th:insert="~{templates/admin_template.html::footer}"></div>
 		</div>
 	</div>
-
 </div>
 
 
