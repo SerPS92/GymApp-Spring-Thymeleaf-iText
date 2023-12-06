@@ -47,7 +47,7 @@
 					<img class="w-50 h-50" th:src="@{/images/{img} (img = ${exercise.image})}" alt="Image">
 					<div class="bg-white p-4 mb-30 w-50 h-50">
 						<h3 th:text="${exercise.name}"></h3>
-						<form th:action="@{/exercise/addExercise}" method="post">
+						<form th:action="@{/program/addExercise}" method="post">
 							<input type="hidden" name="exercise_id" id="exercise_id" th:value="${exercise.id}">
 							<div class="form-group">
 								<label for="repetitions">Repetitions:</label>

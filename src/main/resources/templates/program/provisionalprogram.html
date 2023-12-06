@@ -28,23 +28,24 @@
 	<div th:insert="~{templates/admin_template.html::sidebar}"></div>
 	
 	
-	<div id="content-wrapper" style="background-color: #FFB6C1">
-		<div id="content" style="background-color: #FFB6C1; margin-left: 0vw;">
+	<div id="content-wrapper">
+		<div id="content">
 			<!--TopBar-->
 			<div th:insert="~{templates/admin_template.html::topbar}"></div>
 			
-			<div style="background-color: #ADD8E6; width: 80vw">
+			<div style="width: 80vw">
 				
 				<!-- Page Heading -->
 				<div class="d-sm-flex align-items-left justify-content-between mb-4">
 					<h1 class="h3 mb-0 text-gray-800">Program</h1>
+					<a type="button" class="btn btn-primary" th:href="@{/program/createProgram}">Save</a>
 				</div>
 				
 				<!-- Begin Page Content -->
-				<div class="container-fluid" style="background-color: #f2f2f2; width: 80vw; height: 100vh">
+				<div class="container-fluid" style="width: 80vw; height: 100vh">
 					
 					<!-- Content Row -->
-					<div class="row" style="height: 50vh; width: 60vw">
+					<div class="row" style="height: 50vh; width: 80vw">
 						<div class="col" style="width: 10vw; height:14vh">
 							<h3>Monday</h3>
 							<div th:each="exercise:${exercisesForMonday}">
@@ -52,27 +53,37 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
+											<td><a class="btn btn-sm btn-danger"
+											       th:href="@{/program/quit/{id}
+											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x
+											</a>
+											</td>
 										</tr>
 										<tr>
 											<td rowspan="6">
-												<img style="width: 7vw; height:9vh;"
+												<img style="width: 7vw; height:10vh;"
 												     th:src="@{/images/{img} (img = ${exercise.image})}">
 											</td>
 										</tr>
 										<tr>
-											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Series: '+ ${exercise.series}"></td>
+											<td th:text="'Series: '+ ${exercise.series}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+											<td th:text="'Weight: '+ ${exercise.weight}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+											<td th:text="'Rest: '+ ${exercise.rest}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+											<td th:text="'Notes: '+ ${exercise.notes}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 									</table>
 								</div>
@@ -85,26 +96,34 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
+											<td><a class="btn btn-sm btn-danger"
+											       th:href="@{/program/quit/{id}
+											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
-											<td rowspan="6"><img style="width: 7vw; height:9vh;"
+											<td rowspan="6"><img style="width: 7vw; height:10vh;"
 											                     th:src="@{/images/{img} (img = ${exercise.image})}">
 											</td>
 										</tr>
 										<tr>
-											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Series: '+ ${exercise.series}"></td>
+											<td th:text="'Series: '+ ${exercise.series}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+											<td th:text="'Weight: '+ ${exercise.weight}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+											<td th:text="'Rest: '+ ${exercise.rest}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+											<td th:text="'Notes: '+ ${exercise.notes}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 									</table>
 								</div>
@@ -117,26 +136,34 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
+											<td><a class="btn btn-sm btn-danger"
+											       th:href="@{/program/quit/{id}
+											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
-											<td rowspan="6"><img style="width: 7vw; height:9vh;"
+											<td rowspan="6"><img style="width: 7vw; height:10vh;"
 											                     th:src="@{/images/{img} (img = ${exercise.image})}">
 											</td>
 										</tr>
 										<tr>
-											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Series: '+ ${exercise.series}"></td>
+											<td th:text="'Series: '+ ${exercise.series}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+											<td th:text="'Weight: '+ ${exercise.weight}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+											<td th:text="'Rest: '+ ${exercise.rest}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+											<td th:text="'Notes: '+ ${exercise.notes}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 									</table>
 								</div>
@@ -149,26 +176,34 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
+											<td><a class="btn btn-sm btn-danger"
+											       th:href="@{/program/quit/{id}
+											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
-											<td rowspan="6"><img style="width: 7vw; height:9vh;"
+											<td rowspan="6"><img style="width: 7vw; height:10vh;"
 											                     th:src="@{/images/{img} (img = ${exercise.image})}">
 											</td>
 										</tr>
 										<tr>
-											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Series: '+ ${exercise.series}"></td>
+											<td th:text="'Series: '+ ${exercise.series}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+											<td th:text="'Weight: '+ ${exercise.weight}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+											<td th:text="'Rest: '+ ${exercise.rest}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+											<td th:text="'Notes: '+ ${exercise.notes}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 									</table>
 								</div>
@@ -181,26 +216,74 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
+											<td><a class="btn btn-sm btn-danger"
+											       th:href="@{/program/quit/{id}
+											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
-											<td rowspan="6"><img style="width: 7vw; height:9vh;"
+											<td rowspan="6"><img style="width: 7vw; height:10vh;"
 											                     th:src="@{/images/{img} (img = ${exercise.image})}">
 											</td>
 										</tr>
 										<tr>
-											<td th:text="'Repes: '+ ${exercise.repetitions}"></td>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Series: '+ ${exercise.series}"></td>
+											<td th:text="'Series: '+ ${exercise.series}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Weight: '+ ${exercise.weight}"></td>
+											<td th:text="'Weight: '+ ${exercise.weight}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Rest: '+ ${exercise.rest}"></td>
+											<td th:text="'Rest: '+ ${exercise.rest}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 										<tr>
-											<td th:text="'Notes: '+ ${exercise.notes}"></td>
+											<td th:text="'Notes: '+ ${exercise.notes}"
+											    style="font-size: 0.75em;"></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col" style="margin-left: 0vw">
+							<h3>Saturday</h3>
+							<div th:each="exercise:${exercisesForSaturday}">
+								<div class="row">
+									<table>
+										<tr>
+											<td th:text="${exercise.name}"></td>
+											<td><a class="btn btn-sm btn-danger"
+											       th:href="@{/program/quit/{id}
+											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
+										</tr>
+										<tr>
+											<td rowspan="6"><img style="width: 7vw; height:10vh;"
+											                     th:src="@{/images/{img} (img = ${exercise.image})}">
+											</td>
+										</tr>
+										<tr>
+											<td th:text="'Repes: '+ ${exercise.repetitions}"
+											    style="font-size: 0.75em;"></td>
+										</tr>
+										<tr>
+											<td th:text="'Series: '+ ${exercise.series}"
+											    style="font-size: 0.75em;"></td>
+										</tr>
+										<tr>
+											<td th:text="'Weight: '+ ${exercise.weight}"
+											    style="font-size: 0.75em;"></td>
+										</tr>
+										<tr>
+											<td th:text="'Rest: '+ ${exercise.rest}"
+											    style="font-size: 0.75em;"></td>
+										</tr>
+										<tr>
+											<td th:text="'Notes: '+ ${exercise.notes}"
+											    style="font-size: 0.75em;"></td>
 										</tr>
 									</table>
 								</div>

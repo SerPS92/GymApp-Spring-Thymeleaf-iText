@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http:/www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 	
@@ -27,36 +27,43 @@
 	<!--Sidebar-->
 	<div th:insert="~{templates/admin_template.html::sidebar}"></div>
 	
-	
 	<div id="content-wrapper" class="d-flex flex-column">
 		<div id="content">
-			<!--TopBar-->
 			<div th:insert="~{templates/admin_template.html::topbar}"></div>
 			
-			<div class="container">
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
 				
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<!-- Content Row -->
+				<div class="row">
 					
-					<!-- Page Heading -->
-					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Program</h1>
-					</div>
-					
-					<!-- Content Row -->
-					<div class="row">
-					
-					
-					
-					</div>
-				
+					<h2>Create Program</h2>
+					<form class="form-horizontal" th:action="@{/program/saveProgram}" method="post">
+						<br><br>
+						<div class="form-group">
+							<label for="start_date">Start Date</label>
+							<input type="date" class="form-control" id="start_date" name="start_date">
+						</div>
+						<div class="form-group">
+							<label for="end_date">End Date</label>
+							<input type="date" class="form-control" id="end_date" name="end_date">
+						</div>
+						
+						<br>
+						<div class="col-sm-2">
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</form>
 				</div>
+			
 			</div>
 			
 			<!--Footer-->
 			<div th:insert="~{templates/admin_template.html::footer}"></div>
+		
 		</div>
 	</div>
+
 
 </div>
 
@@ -79,5 +86,4 @@
 <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
 
 </body>
-
 </html>
