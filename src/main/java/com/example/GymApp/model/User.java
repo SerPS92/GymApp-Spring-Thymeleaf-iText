@@ -21,9 +21,9 @@ public class User {
     private Integer id;
     private String name;
     private String weight;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Program> programs;
 }

@@ -58,12 +58,21 @@
 							<tr th:each="program:${programs}">
 								<td th:text="${#dates.format(program.start_date, 'dd/MM/yyyy')}"></td>
 								<td th:text="${#dates.format(program.end_date, 'dd/MM/yyyy')}"></td>
-								<td>User</td>
+								<td th:text="${program.user.name}"></td>
 								<td>
-									<a type="button" class="btn btn-primary"
-									   th:href="@{/program/show/{id} (id = ${program.id})}">Show</a>
+									<div class="btn-group">
+										<button type="button" class="btn btn-primary"
+										        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Actions
+										</button>
+										<div class="dropdown-menu">
+											<a class="dropdown-item"
+											   th:href="@{/program/show/{id} (id = ${program.id})}">Show</a>
+											<a class="dropdown-item"
+											   th:href="@{/program/delete/{id} (id = ${program.id})}">Delete</a>
+										</div>
+									</div>
 								</td>
-							
 							</tr>
 							</tbody>
 						</table>

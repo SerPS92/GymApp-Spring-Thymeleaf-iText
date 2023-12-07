@@ -3,9 +3,11 @@ package com.example.GymApp.controller;
 import com.example.GymApp.model.Exercise;
 import com.example.GymApp.model.Program;
 import com.example.GymApp.model.ProgramExercise;
+import com.example.GymApp.model.User;
 import com.example.GymApp.service.IExerciseService;
 import com.example.GymApp.service.IProgramExerciseService;
 import com.example.GymApp.service.IProgramService;
+import com.example.GymApp.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,13 +27,16 @@ public class ProgramController {
     private final IExerciseService exerciseService;
     private final IProgramExerciseService programExerciseService;
     private final IProgramService programService;
+    private final IUserService userService;
 
     public ProgramController(IExerciseService exerciseService,
                              IProgramExerciseService programExerciseService,
-                             IProgramService programService) {
+                             IProgramService programService,
+                             IUserService userService) {
         this.exerciseService = exerciseService;
         this.programExerciseService = programExerciseService;
         this.programService = programService;
+        this.userService = userService;
     }
 
     @GetMapping("/add/{id}")
@@ -126,12 +131,14 @@ public class ProgramController {
     }
 
     @GetMapping("/createProgram")
-    public String save() {
+    public String save(Model model) {
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
         return "program/saveprogram";
     }
 
     @PostMapping("/saveProgram")
-    public String saveProgram(Program program, Model model) {
+    public String saveProgram(Program program) {
 
 
         program.setProgramExercises(programExercises);
@@ -143,7 +150,7 @@ public class ProgramController {
         }
 
         programExercises.clear();
-        return "redirect:/program/provisional";
+        return "redirect:/program/programs";
     }
 
     @GetMapping("/programs")
@@ -192,6 +199,12 @@ public class ProgramController {
         model.addAttribute("exercisesForSaturday", exercisesForSaturday);
 
         return "program/program";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable(name = "id")Integer id){
+        programService.delete(id);
+        return "redirect:/program/programs";
     }
 
 }

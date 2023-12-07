@@ -24,7 +24,7 @@ public class Program {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date end_date;
 
-    @OneToMany(mappedBy = "program")
+    @OneToMany(mappedBy = "program", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProgramExercise> programExercises;
 
     @ManyToOne

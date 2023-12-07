@@ -37,26 +37,39 @@
 				<!-- Content Row -->
 				<div class="row">
 					
-					<h2>Create Program</h2>
-					<form class="form-horizontal" th:action="@{/program/saveProgram}" method="post">
-						<br><br>
-						<div class="form-group">
-							<label for="start_date">Start Date</label>
-							<input type="date" class="form-control" id="start_date" name="start_date">
-						</div>
-						<div class="form-group">
-							<label for="end_date">End Date</label>
-							<input type="date" class="form-control" id="end_date" name="end_date">
-						</div>
+					<h2>Create user</h2>
+					<form class="form-horizontal" th:action="@{/user/update}" method="post">
+						<br></br>
 						
-						<div class="form-group">
-							<label for="user">User:</label>
-								<select class="form-control" id="user" name="user" required>
-									<option value="" disabled selected>Select user</option>
-									<option th:each="user:${users}" th:value="${user.id}"
-									        th:text="${user.name}"></option>
-								</select>
+						<div class="col-md-12">
+							<input type="hidden" th:value="${user.id}" name="id" id="id">
+							<label class="control-label col-sm-2" for="name">Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="name" name="name" th:value="${user.name}"
+								       placeholder="Insert name" autocomplete="off" required>
+							</div>
 						</div>
+						<br>
+						
+						<div class="col-md-12">
+							<label class="control-label col-sm-2" for="weight">Weight: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="weight" name="weight"
+								       th:value="${user.weight}"
+								       placeholder="Insert weight in kg" autocomplete="off" required>
+							</div>
+						</div>
+						<br>
+						
+						<div class="col-md-12">
+							<label class="control-label col-sm-2" for="birthday">Birthday: </label>
+							<div class="col-sm-10">
+								<input type="date" class="form-control" id="birthday" name="birthday"
+								       th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}"
+								        autocomplete="off" required>
+							</div>
+						</div>
+						<br>
 						
 						<br>
 						<div class="col-sm-2">

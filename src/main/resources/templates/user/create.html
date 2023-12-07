@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http:/www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 	
@@ -20,73 +20,70 @@
 
 </head>
 
-<body>
+<body id="page-top">
 
 <div id="wrapper">
 	
 	<!--Sidebar-->
 	<div th:insert="~{templates/admin_template.html::sidebar}"></div>
 	
-	
-	<div id="content-wrapper">
+	<div id="content-wrapper" class="d-flex flex-column">
 		<div id="content">
-			<!--TopBar-->
 			<div th:insert="~{templates/admin_template.html::topbar}"></div>
 			
-			<div style="width: 80vw">
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
 				
-				<!-- Page Heading -->
-				<div class="d-sm-flex align-items-left justify-content-between mb-4">
-					<h1 class="h3 mb-0 text-gray-800">Users</h1>
-				</div>
-				
-				
-				<!-- Begin Page Content -->
-				<div class="container-fluid" style="width: 80vw; height: 100vh">
+				<!-- Content Row -->
+				<div class="row">
 					
-					<div class="d-sm-flex mb-4">
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/user/create}">Create</a>
-					</div>
-					
-					<!-- Content Row -->
-					<div class="row">
-						<table class="table">
-							<thead>
-							<tr>
-								<th>Name</th>
-								<th>Weight</th>
-								<th>Birthday</th>
-							
-							</tr>
-							</thead>
-							<tbody>
-							<tr th:each="user:${users}">
-								<td th:text="${user.name}"></td>
-								<td th:text="${user.weight}"></td>
-								<td th:text="${#dates.format(user.birthday, 'dd/MM/yyyy')}"></td>
-								<td>
-									<div class="btn-group">
-										<button type="button" class="btn btn-primary"
-										        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Actions
-										</button>
-										<div class="dropdown-menu">
-											<a class="dropdown-item"
-											   th:href="@{/user/edit/{id} (id = ${user.id})}">Edit</a>
-											<a class="dropdown-item"
-											   th:href="@{/user/delete/{id} (id = ${user.id})}">Delete</a>
-										</div>
-									</div>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
+					<h2>Create user</h2>
+					<form class="form-horizontal" th:action="@{/user/save}" method="post">
+						<br></br>
+						
+						<div class="col-md-12">
+							<label class="control-label col-sm-2" for="name">Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="name" name="name"
+								       placeholder="Insert name" autocomplete="off" required>
+							</div>
+						</div>
+						<br>
+						
+						<div class="col-md-12">
+							<label class="control-label col-sm-2" for="weight">Weight: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="weight" name="weight"
+								       placeholder="Insert weight in kg" autocomplete="off" required>
+							</div>
+						</div>
+						<br>
+						
+						<div class="col-md-12">
+							<label class="control-label col-sm-2" for="birthday">Birthday: </label>
+							<div class="col-sm-10">
+								<input type="date" class="form-control" id="birthday" name="birthday"
+								        autocomplete="off" required>
+							</div>
+						</div>
+						<br>
+						
+						<br>
+						<div class="col-sm-2">
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</form>
 				</div>
+			
 			</div>
+			
+			<!--Footer-->
+			<div th:insert="~{templates/admin_template.html::footer}"></div>
+		
 		</div>
 	</div>
+
+
 </div>
 
 
@@ -108,5 +105,4 @@
 <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
 
 </body>
-
 </html>
