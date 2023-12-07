@@ -146,4 +146,52 @@ public class ProgramController {
         return "redirect:/program/provisional";
     }
 
+    @GetMapping("/programs")
+    public String programs(Model model) {
+        List<Program> programs = new ArrayList<>();
+        programs = programService.findAllByOrderByIdDesc();
+        model.addAttribute("programs", programs);
+        return "program/programs";
+    }
+
+    @GetMapping("/show/{id}")
+    public String show(@PathVariable(name = "id") Integer id,
+                       Model model) {
+        Optional<Program> program = programService.findById(id);
+        List<ProgramExercise> programExercisesFinal = new ArrayList<>();
+        programExercisesFinal = program.get().getProgramExercises();
+
+        List<ProgramExercise> exercisesForMonday = new ArrayList<>();
+        List<ProgramExercise> exercisesForTuesday = new ArrayList<>();
+        List<ProgramExercise> exercisesForWednesday = new ArrayList<>();
+        List<ProgramExercise> exercisesForThursday = new ArrayList<>();
+        List<ProgramExercise> exercisesForFriday = new ArrayList<>();
+        List<ProgramExercise> exercisesForSaturday = new ArrayList<>();
+
+        for (ProgramExercise exercise : programExercisesFinal) {
+            if (exercise.getDay().equals("monday")) {
+                exercisesForMonday.add(exercise);
+            } else if (exercise.getDay().equals("tuesday")) {
+                exercisesForTuesday.add(exercise);
+            } else if (exercise.getDay().equals("wednesday")) {
+                exercisesForWednesday.add(exercise);
+            } else if (exercise.getDay().equals("thursday")) {
+                exercisesForThursday.add(exercise);
+            } else if (exercise.getDay().equals("friday")) {
+                exercisesForFriday.add(exercise);
+            } else if (exercise.getDay().equals("saturday")) {
+                exercisesForSaturday.add(exercise);
+            }
+        }
+
+        model.addAttribute("exercisesForMonday", exercisesForMonday);
+        model.addAttribute("exercisesForTuesday", exercisesForTuesday);
+        model.addAttribute("exercisesForWednesday", exercisesForWednesday);
+        model.addAttribute("exercisesForThursday", exercisesForThursday);
+        model.addAttribute("exercisesForFriday", exercisesForFriday);
+        model.addAttribute("exercisesForSaturday", exercisesForSaturday);
+
+        return "program/program";
+    }
+
 }

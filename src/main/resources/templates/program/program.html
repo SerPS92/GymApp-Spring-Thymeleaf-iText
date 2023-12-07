@@ -37,8 +37,7 @@
 				
 				<!-- Page Heading -->
 				<div class="d-sm-flex align-items-left justify-content-between mb-4">
-					<h1 class="h3 mb-0 text-gray-800">Provisional Program</h1>
-					<a type="button" class="btn btn-primary" th:href="@{/program/createProgram}">Save</a>
+					<h1 class="h3 mb-0 text-gray-800">Program</h1>
 				</div>
 				
 				<!-- Begin Page Content -->
@@ -53,11 +52,6 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
-											<td><a class="btn btn-sm btn-danger"
-											       th:href="@{/program/quit/{id}
-											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x
-											</a>
-											</td>
 										</tr>
 										<tr>
 											<td rowspan="6">
@@ -96,9 +90,6 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
-											<td><a class="btn btn-sm btn-danger"
-											       th:href="@{/program/quit/{id}
-											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
 											<td rowspan="6"><img style="width: 7vw; height:10vh;"
@@ -136,9 +127,6 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
-											<td><a class="btn btn-sm btn-danger"
-											       th:href="@{/program/quit/{id}
-											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
 											<td rowspan="6"><img style="width: 7vw; height:10vh;"
@@ -176,9 +164,6 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
-											<td><a class="btn btn-sm btn-danger"
-											       th:href="@{/program/quit/{id}
-											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
 											<td rowspan="6"><img style="width: 7vw; height:10vh;"
@@ -216,9 +201,6 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
-											<td><a class="btn btn-sm btn-danger"
-											       th:href="@{/program/quit/{id}
-											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
 											<td rowspan="6"><img style="width: 7vw; height:10vh;"
@@ -256,9 +238,6 @@
 									<table>
 										<tr>
 											<td th:text="${exercise.name}"></td>
-											<td><a class="btn btn-sm btn-danger"
-											       th:href="@{/program/quit/{id}
-											       (id = ${exercise.exercise.id}, day = ${exercise.day})}">x</a></td>
 										</tr>
 										<tr>
 											<td rowspan="6"><img style="width: 7vw; height:10vh;"

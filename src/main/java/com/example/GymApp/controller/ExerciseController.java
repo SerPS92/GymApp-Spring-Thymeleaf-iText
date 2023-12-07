@@ -1,11 +1,8 @@
 package com.example.GymApp.controller;
 
 import com.example.GymApp.model.Exercise;
-import com.example.GymApp.model.Program;
 import com.example.GymApp.model.ProgramExercise;
 import com.example.GymApp.service.IExerciseService;
-import com.example.GymApp.service.IProgramExerciseService;
-import com.example.GymApp.service.IProgramService;
 import com.example.GymApp.service.UploadFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/exercise")
@@ -114,12 +108,5 @@ public class ExerciseController {
         exerciseService.update(exercise);
         return "redirect:/exercise/";
     }
-
-
-
-
-
-
-
 
 }
