@@ -60,10 +60,7 @@ public class ProgramController {
                               @RequestParam(name = "notes") String notes) {
 
         ProgramExercise programExercise = new ProgramExercise();
-        Exercise exercise = new Exercise();
-
-        Optional<Exercise> optionalExercise = exerciseService.findById(exercise_id);
-        exercise = optionalExercise.get();
+        Exercise exercise = exerciseService.findById(exercise_id).get();
 
         programExercise.setName(exercise.getName());
         programExercise.setExercise(exercise);
@@ -77,6 +74,26 @@ public class ProgramController {
 
         programExercises.add(programExercise);
 
+        return "exercise/exercises";
+    }
+
+    @GetMapping("/quickAdd/{id}")
+    public String quickAdd(@PathVariable(name = "id")Integer id,
+                           @RequestParam(name = "day") String day){
+        ProgramExercise programExercise = new ProgramExercise();
+        Exercise exercise = exerciseService.findById(id).get();
+
+        programExercise.setName(exercise.getName());
+        programExercise.setExercise(exercise);
+        programExercise.setImage(exercise.getImage());
+        programExercise.setDay(day);
+        programExercise.setSeries("");
+        programExercise.setWeight("");
+        programExercise.setNotes("");
+        programExercise.setRest("");
+        programExercise.setRepetitions("");
+
+        programExercises.add(programExercise);
         return "exercise/exercises";
     }
 
@@ -164,9 +181,9 @@ public class ProgramController {
     @GetMapping("/show/{id}")
     public String show(@PathVariable(name = "id") Integer id,
                        Model model) {
-        Optional<Program> program = programService.findById(id);
+        Program program = programService.findById(id).get();
         List<ProgramExercise> programExercisesFinal = new ArrayList<>();
-        programExercisesFinal = program.get().getProgramExercises();
+        programExercisesFinal = program.getProgramExercises();
 
         List<ProgramExercise> exercisesForMonday = new ArrayList<>();
         List<ProgramExercise> exercisesForTuesday = new ArrayList<>();
@@ -191,6 +208,7 @@ public class ProgramController {
             }
         }
 
+        model.addAttribute("program", program);
         model.addAttribute("exercisesForMonday", exercisesForMonday);
         model.addAttribute("exercisesForTuesday", exercisesForTuesday);
         model.addAttribute("exercisesForWednesday", exercisesForWednesday);

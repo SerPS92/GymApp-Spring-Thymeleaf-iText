@@ -38,7 +38,10 @@
 				<!-- Page Heading -->
 				<div class="d-sm-flex align-items-left justify-content-between mb-4">
 					<h1 class="h3 mb-0 text-gray-800">Program</h1>
+					<a type="button" class="btn btn-primary"
+					   th:href="@{/generate-pdf/{id} (id = ${program.id})}">Export</a>
 				</div>
+				
 				
 				<!-- Begin Page Content -->
 				<div class="container-fluid" style="width: 80vw; height: 100vh">

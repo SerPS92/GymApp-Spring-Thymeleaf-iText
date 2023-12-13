@@ -107,6 +107,34 @@
 											</div>
 										</div>
 									</div>
+									<div class="d-flex justify-content-center">
+										<div class="btn-group">
+											<button type="button" class="btn btn-white"
+											        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												Quick Add
+											</button>
+											<div class="dropdown-menu">
+												<a class="dropdown-item"
+												   th:href="@{/program/quickAdd/{id} (id = ${exercise.id}, day='monday')}">
+													Monday</a>
+												<a class="dropdown-item"
+												   th:href="@{/program/quickAdd/{id} (id = ${exercise.id}, day='tuesday')}">
+													Tuesday</a>
+												<a class="dropdown-item"
+												   th:href="@{/program/quickAdd/{id} (id = ${exercise.id}, day='wednesday')}">
+													Wednesday</a>
+												<a class="dropdown-item"
+												   th:href="@{/program/quickAdd/{id} (id = ${exercise.id}, day='thursday')}">
+													Thursday</a>
+												<a class="dropdown-item"
+												   th:href="@{/program/quickAdd/{id} (id = ${exercise.id}, day='friday')}">
+													Friday</a>
+												<a class="dropdown-item"
+												   th:href="@{/program/quickAdd/{id} (id = ${exercise.id}, day='saturday')}">
+													Saturday</a>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
