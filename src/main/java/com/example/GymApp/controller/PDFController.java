@@ -23,7 +23,6 @@ import java.util.List;
 @Controller
 public class PDFController {
 
-    private final String folder = "src/main/resources/static/images//";
     private final IProgramService programService;
     private final PdfService pdfService;
 
