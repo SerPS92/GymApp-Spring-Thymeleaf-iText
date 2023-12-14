@@ -5,16 +5,11 @@ import com.example.GymApp.model.Program;
 import com.example.GymApp.model.ProgramExercise;
 import com.example.GymApp.service.IProgramService;
 import com.example.GymApp.service.PdfService;
-import com.itextpdf.io.image.ImageData;
-import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.TextAlignment;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +19,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PDFController {
@@ -43,6 +37,7 @@ public class PDFController {
     public void generatePdf(@PathVariable(name = "id") Integer id,
                             HttpServletResponse response) throws IOException {
 
+        //Data
         Program program = programService.findById(id).get();
         List<ProgramExercise> programExercisesFinal = program.getProgramExercises();
 
@@ -81,14 +76,13 @@ public class PDFController {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String startDateFormatted = dateFormat.format(program.getStart_date());
             String endDateFormatted = dateFormat.format(program.getEnd_date());
-            Paragraph dateParagraph = new Paragraph("Start date: " + startDateFormatted +
-                    "--End date: " + endDateFormatted);
+            String dates = "Start date: " + startDateFormatted + " -- End date: " + endDateFormatted;
+            Paragraph dateParagraph = new Paragraph(dates);
             dateParagraph.setFontSize(8);
             document.add(dateParagraph);
 
 
             Table mainTable = new Table(6);
-
             Table columnMonday = pdfService.createExerciseTable(exercisesForMonday, "Monday");
             Table columnTuesday = pdfService.createExerciseTable(exercisesForTuesday, "Tuesday");
             Table columnWednesday = pdfService.createExerciseTable(exercisesForWednesday, "Wednesday");

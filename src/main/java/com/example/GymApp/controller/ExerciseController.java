@@ -31,7 +31,9 @@ public class ExerciseController {
     }
 
     @GetMapping("/")
-    public String exercises() {
+    public String exercises(Model model) {
+        List<Exercise> exercises = exerciseService.findAll();
+        model.addAttribute("exercises", exercises);
         return "exercise/exercises";
     }
 

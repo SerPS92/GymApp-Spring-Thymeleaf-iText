@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class PdfService {
 
-    private final String folder = "src/main/resources/static/images//";
+    private static final String folder = "src/main/resources/static/images//";
 
     public Table createExerciseTable(List<ProgramExercise> exercises, String day) throws MalformedURLException {
         Table column = new Table(1);
