@@ -24,6 +24,6 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Program> programs;
 }
