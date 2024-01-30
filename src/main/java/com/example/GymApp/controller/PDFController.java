@@ -89,12 +89,25 @@ public class PDFController {
             Table columnFriday = pdfService.createExerciseTable(exercisesForFriday, "Friday");
             Table columnSaturday = pdfService.createExerciseTable(exercisesForSaturday, "Saturday");
 
-            mainTable.addCell(columnMonday);
-            mainTable.addCell(columnTuesday);
-            mainTable.addCell(columnWednesday);
-            mainTable.addCell(columnThursday);
-            mainTable.addCell(columnFriday);
-            mainTable.addCell(columnSaturday);
+            if (!exercisesForMonday.isEmpty()) {
+                mainTable.addCell(columnMonday);
+            }
+            if(!exercisesForTuesday.isEmpty()){
+                mainTable.addCell(columnTuesday);
+            }
+            if(!exercisesForWednesday.isEmpty()){
+                mainTable.addCell(columnWednesday);
+            }
+            if(!exercisesForThursday.isEmpty()){
+                mainTable.addCell(columnThursday);
+            }
+            if(!exercisesForFriday.isEmpty()){
+                mainTable.addCell(columnFriday);
+            }
+            if(!exercisesForSaturday.isEmpty()){
+                mainTable.addCell(columnSaturday);
+            }
+
             document.add(mainTable);
             document.close();
 

@@ -39,7 +39,7 @@ public class PdfService {
                     "Note: " + exercise.getNotes());
             paragraph.setFontSize(7);
             textCell.add(paragraph);
-            textCell.setWidth(80);
+            textCell.setWidth(120);
 
             Table rowTable = new Table(2);
             rowTable.addCell(imageCell);
