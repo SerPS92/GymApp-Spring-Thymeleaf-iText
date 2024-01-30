@@ -47,36 +47,34 @@
 						<a type="button" class="btn btn-primary" th:href="@{/exercise/create}">Create</a>
 					</div>
 					<br>
-					<div class="row">
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'chest'})}" style="margin-right: 20px;">Chest
-						</a>
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'back'})}" style="margin-right: 20px;">Back
-						</a>
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'biceps'})}" style="margin-right: 20px;">Bíceps
-						</a>
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'triceps'})}" style="margin-right: 20px;">Tríceps
-						</a>
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'shoulder'})}"
-						   style="margin-right: 20px;">Shoulder
-						</a>
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'core'})}" style="margin-right: 20px;">Core
-						</a>
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'cardio'})}" style="margin-right: 20px;">Cardio
-						</a>
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'hiit'})}" style="margin-right: 20px;">Hiit
-						</a>
-						<a type="button" class="btn btn-primary"
-						   th:href="@{/exercise/show/{type} (type = ${'leg'})}" style="margin-right: 20px;">Leg
-						</a>
+					
+					<div class="btn-group">
+						<button type="button" class="btn btn-dark"
+						        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Categories
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'chest'})}">Chest</a>
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'back'})}">Back</a>
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'biceps'})}">Bíceps</a>
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'triceps'})}">Tríceps</a>
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'shoulder'})}">Shoulder</a>
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'core'})}">Core</a>
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'cardio'})}">Cardio</a>
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'hiit'})}">Hiit</a>
+							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'leg'})}">Leg</a>
+						</div>
 					</div>
+					
 				</div>
 				<br>
 				<div class="bg-gradient-white p-4 mb-30">
