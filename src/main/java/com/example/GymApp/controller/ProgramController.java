@@ -8,6 +8,7 @@ import com.example.GymApp.service.IExerciseService;
 import com.example.GymApp.service.IProgramExerciseService;
 import com.example.GymApp.service.IProgramService;
 import com.example.GymApp.service.IUserService;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -57,7 +59,8 @@ public class ProgramController {
                               @RequestParam(name = "rest") String rest,
                               @RequestParam(name = "weight") String weight,
                               @RequestParam(name = "day") String day,
-                              @RequestParam(name = "notes") String notes) {
+                              @RequestParam(name = "notes") String notes,
+                              HttpSession session) {
 
         ProgramExercise programExercise = new ProgramExercise();
         Exercise exercise = exerciseService.findById(exercise_id).get();
@@ -74,12 +77,14 @@ public class ProgramController {
 
         programExercises.add(programExercise);
 
-        return "exercise/exercises";
+        String type = (String) session.getAttribute("type");
+        return "redirect:/exercise/show/" + type;
     }
 
     @GetMapping("/quickAdd/{id}")
     public String quickAdd(@PathVariable(name = "id")Integer id,
-                           @RequestParam(name = "day") String day){
+                           @RequestParam(name = "day") String day,
+                           HttpSession session){
         ProgramExercise programExercise = new ProgramExercise();
         Exercise exercise = exerciseService.findById(id).get();
 
@@ -94,7 +99,9 @@ public class ProgramController {
         programExercise.setRepetitions("");
 
         programExercises.add(programExercise);
-        return "exercise/exercises";
+
+        String type = (String) session.getAttribute("type");
+        return "redirect:/exercise/show/" + type;
     }
 
     @GetMapping("/quit/{id}")
@@ -102,7 +109,9 @@ public class ProgramController {
                        @RequestParam(name = "day") String day) {
         List<ProgramExercise> newProgramExercises = new ArrayList<>();
         for (ProgramExercise programExercise : programExercises) {
-            if (programExercise.getExercise().getId() != id || !programExercise.getDay().equals(day)) {
+            if (Objects.equals(programExercise.getExercise().getId(), id) && !programExercise.getDay().equals(day)){
+                newProgramExercises.add(programExercise);
+            } else if(!Objects.equals(programExercise.getExercise().getId(), id)){
                 newProgramExercises.add(programExercise);
             }
         }

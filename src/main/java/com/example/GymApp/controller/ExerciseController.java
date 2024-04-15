@@ -4,6 +4,7 @@ import com.example.GymApp.model.Exercise;
 import com.example.GymApp.model.ProgramExercise;
 import com.example.GymApp.service.IExerciseService;
 import com.example.GymApp.service.UploadFileService;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -58,11 +59,18 @@ public class ExerciseController {
 
     @GetMapping("/show/{type}")
     public String show(@PathVariable(name = "type") String type,
+                       HttpSession session,
                        Model model) {
+        session.setAttribute("type", type);
 
-        List<Exercise> exercises = exerciseService.findByType(type);
-        model.addAttribute("exercises", exercises);
-        return "exercise/exercises";
+        if (!type.equals("All")) {
+            List<Exercise> exercises = exerciseService.findByType(type);
+            model.addAttribute("exercises", exercises);
+            return "exercise/exercises";
+        } else {
+            return "redirect:/exercise/";
+        }
+
     }
 
     @GetMapping("/delete/{id}")

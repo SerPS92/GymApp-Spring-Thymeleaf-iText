@@ -55,6 +55,8 @@
 						</button>
 						<div class="dropdown-menu">
 							<a class="dropdown-item"
+							   th:href="@{/exercise/show/{type} (type = ${'All'})}">All</a>
+							<a class="dropdown-item"
 							   th:href="@{/exercise/show/{type} (type = ${'chest'})}">Chest</a>
 							<a class="dropdown-item"
 							   th:href="@{/exercise/show/{type} (type = ${'back'})}">Back</a>
