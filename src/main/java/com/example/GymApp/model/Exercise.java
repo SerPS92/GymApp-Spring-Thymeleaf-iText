@@ -2,7 +2,6 @@ package com.example.GymApp.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 

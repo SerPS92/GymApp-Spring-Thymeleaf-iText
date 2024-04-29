@@ -2,7 +2,6 @@ package com.example.GymApp.service;
 
 import com.example.GymApp.model.Program;
 import com.example.GymApp.repository.IProgramRepo;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.example.GymApp.controller;
 
 import com.example.GymApp.model.Exercise;
-import com.example.GymApp.model.ProgramExercise;
 import com.example.GymApp.service.IExerciseService;
 import com.example.GymApp.service.UploadFileService;
 import jakarta.servlet.http.HttpSession;
@@ -13,14 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/exercise")
 public class ExerciseController {
 
-    List<ProgramExercise> programExercises = new ArrayList<>();
     private final Logger log = LoggerFactory.getLogger(ExerciseController.class);
     private final IExerciseService exerciseService;
     private final UploadFileService uploadFileService;

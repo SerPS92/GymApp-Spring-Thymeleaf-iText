@@ -4,7 +4,6 @@ import com.example.GymApp.model.User;
 import com.example.GymApp.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
