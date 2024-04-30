@@ -23,7 +23,6 @@ import java.util.Objects;
 @RequestMapping("/program")
 public class ProgramController {
 
-    List<ProgramExercise> programExercises = new ArrayList<>();
     private final Logger log = LoggerFactory.getLogger(ProgramController.class);
     private final IExerciseService exerciseService;
     private final IProgramExerciseService programExerciseService;
@@ -74,16 +73,21 @@ public class ProgramController {
         programExercise.setDay(day);
         programExercise.setNotes(notes);
 
+        List<ProgramExercise> programExercises = (List<ProgramExercise>) session.getAttribute("programExercises");
         programExercises.add(programExercise);
+        session.setAttribute("programExercises", programExercises);
 
         String type = (String) session.getAttribute("type");
+        if(type == null){
+            type = "All";
+        }
         return "redirect:/exercise/show/" + type;
     }
 
     @GetMapping("/quickAdd/{id}")
-    public String quickAdd(@PathVariable(name = "id")Integer id,
+    public String quickAdd(@PathVariable(name = "id") Integer id,
                            @RequestParam(name = "day") String day,
-                           HttpSession session){
+                           HttpSession session) {
         ProgramExercise programExercise = new ProgramExercise();
         Exercise exercise = exerciseService.findById(id).get();
 
@@ -97,30 +101,39 @@ public class ProgramController {
         programExercise.setRest("");
         programExercise.setRepetitions("");
 
+        List<ProgramExercise> programExercises = (List<ProgramExercise>) session.getAttribute("programExercises");
         programExercises.add(programExercise);
+        session.setAttribute("programExercises", programExercises);
 
         String type = (String) session.getAttribute("type");
+        if(type == null){
+            type = "All";
+        }
         return "redirect:/exercise/show/" + type;
     }
 
     @GetMapping("/quit/{id}")
     public String quit(@PathVariable(name = "id") Integer id,
-                       @RequestParam(name = "day") String day) {
+                       @RequestParam(name = "day") String day,
+                       HttpSession session) {
         List<ProgramExercise> newProgramExercises = new ArrayList<>();
+        List<ProgramExercise> programExercises = (List<ProgramExercise>) session.getAttribute("programExercises");
         for (ProgramExercise programExercise : programExercises) {
-            if (Objects.equals(programExercise.getExercise().getId(), id) && !programExercise.getDay().equals(day)){
+            if (Objects.equals(programExercise.getExercise().getId(), id) && !programExercise.getDay().equals(day)) {
                 newProgramExercises.add(programExercise);
-            } else if(!Objects.equals(programExercise.getExercise().getId(), id)){
+            } else if (!Objects.equals(programExercise.getExercise().getId(), id)) {
                 newProgramExercises.add(programExercise);
             }
         }
         programExercises = newProgramExercises;
+        session.setAttribute("programExercises", programExercises);
         return "redirect:/program/provisional";
     }
 
 
     @GetMapping("/provisional")
-    public String provisional(Model model) {
+    public String provisional(Model model,
+                              HttpSession session) {
 
         List<ProgramExercise> exercisesForMonday = new ArrayList<>();
         List<ProgramExercise> exercisesForTuesday = new ArrayList<>();
@@ -129,19 +142,23 @@ public class ProgramController {
         List<ProgramExercise> exercisesForFriday = new ArrayList<>();
         List<ProgramExercise> exercisesForSaturday = new ArrayList<>();
 
-        for (ProgramExercise exercise : programExercises) {
-            if (exercise.getDay().equals("monday")) {
-                exercisesForMonday.add(exercise);
-            } else if (exercise.getDay().equals("tuesday")) {
-                exercisesForTuesday.add(exercise);
-            } else if (exercise.getDay().equals("wednesday")) {
-                exercisesForWednesday.add(exercise);
-            } else if (exercise.getDay().equals("thursday")) {
-                exercisesForThursday.add(exercise);
-            } else if (exercise.getDay().equals("friday")) {
-                exercisesForFriday.add(exercise);
-            } else if (exercise.getDay().equals("saturday")) {
-                exercisesForSaturday.add(exercise);
+        List<ProgramExercise> programExercises = (List<ProgramExercise>) session.getAttribute("programExercises");
+
+        if (programExercises != null) {
+            for (ProgramExercise exercise : programExercises) {
+                if (exercise.getDay().equals("monday")) {
+                    exercisesForMonday.add(exercise);
+                } else if (exercise.getDay().equals("tuesday")) {
+                    exercisesForTuesday.add(exercise);
+                } else if (exercise.getDay().equals("wednesday")) {
+                    exercisesForWednesday.add(exercise);
+                } else if (exercise.getDay().equals("thursday")) {
+                    exercisesForThursday.add(exercise);
+                } else if (exercise.getDay().equals("friday")) {
+                    exercisesForFriday.add(exercise);
+                } else if (exercise.getDay().equals("saturday")) {
+                    exercisesForSaturday.add(exercise);
+                }
             }
         }
 
@@ -163,9 +180,10 @@ public class ProgramController {
     }
 
     @PostMapping("/saveProgram")
-    public String saveProgram(Program program) {
+    public String saveProgram(Program program,
+                              HttpSession session) {
 
-
+        List<ProgramExercise> programExercises = (List<ProgramExercise>) session.getAttribute("programExercises");
         program.setProgramExercises(programExercises);
         programService.save(program);
 
@@ -175,6 +193,7 @@ public class ProgramController {
         }
 
         programExercises.clear();
+        session.setAttribute("programExercises", programExercises);
         return "redirect:/program/programs";
     }
 
@@ -228,7 +247,7 @@ public class ProgramController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable(name = "id")Integer id){
+    public String delete(@PathVariable(name = "id") Integer id) {
         programService.delete(id);
         return "redirect:/program/programs";
     }
