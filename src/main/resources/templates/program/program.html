@@ -234,43 +234,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="col" style="margin-left: 0vw">
-							<h3>Saturday</h3>
-							<div th:each="exercise:${exercisesForSaturday}">
-								<div class="row">
-									<table>
-										<tr>
-											<td th:text="${exercise.name}"></td>
-										</tr>
-										<tr>
-											<td rowspan="6"><img style="width: 7vw; height:10vh;"
-											                     th:src="@{/images/{img} (img = ${exercise.image})}">
-											</td>
-										</tr>
-										<tr>
-											<td th:text="'Repes: '+ ${exercise.repetitions}"
-											    style="font-size: 0.75em;"></td>
-										</tr>
-										<tr>
-											<td th:text="'Series: '+ ${exercise.series}"
-											    style="font-size: 0.75em;"></td>
-										</tr>
-										<tr>
-											<td th:text="'Weight: '+ ${exercise.weight}"
-											    style="font-size: 0.75em;"></td>
-										</tr>
-										<tr>
-											<td th:text="'Rest: '+ ${exercise.rest}"
-											    style="font-size: 0.75em;"></td>
-										</tr>
-										<tr>
-											<td th:text="'Notes: '+ ${exercise.notes}"
-											    style="font-size: 0.75em;"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

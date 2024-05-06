@@ -140,7 +140,6 @@ public class ProgramController {
         List<ProgramExercise> exercisesForWednesday = new ArrayList<>();
         List<ProgramExercise> exercisesForThursday = new ArrayList<>();
         List<ProgramExercise> exercisesForFriday = new ArrayList<>();
-        List<ProgramExercise> exercisesForSaturday = new ArrayList<>();
 
         List<ProgramExercise> programExercises = (List<ProgramExercise>) session.getAttribute("programExercises");
 
@@ -156,8 +155,6 @@ public class ProgramController {
                     exercisesForThursday.add(exercise);
                 } else if (exercise.getDay().equals("friday")) {
                     exercisesForFriday.add(exercise);
-                } else if (exercise.getDay().equals("saturday")) {
-                    exercisesForSaturday.add(exercise);
                 }
             }
         }
@@ -167,7 +164,6 @@ public class ProgramController {
         model.addAttribute("exercisesForWednesday", exercisesForWednesday);
         model.addAttribute("exercisesForThursday", exercisesForThursday);
         model.addAttribute("exercisesForFriday", exercisesForFriday);
-        model.addAttribute("exercisesForSaturday", exercisesForSaturday);
 
         return "program/provisionalprogram";
     }
